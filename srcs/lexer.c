@@ -13,7 +13,7 @@
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
-static char	*get_token(char *cmd, char *tok[7], int flag)
+static char		*get_token(char *cmd, char *tok[7], int flag)
 {
 	int		i;
 	char	*tokens[12] = {"OP_SEMI", "OP_PIPE", "OP_OR", "OP_AND", "OP_REDL"
@@ -29,7 +29,7 @@ static char	*get_token(char *cmd, char *tok[7], int flag)
 	return (tokens[flag]);
 }
 
-static int	get_flag(char *s)
+static int		get_flag(char *s)
 {
 	if (s)
 	{
@@ -43,7 +43,7 @@ static int	get_flag(char *s)
 	return (e_cmd);
 }
 
-static int	check_cmd(char *s1, char *s2)
+static int		check_cmd(char *s1, char *s2)
 {
 	if ((!ft_strcmp(s1, "CMD") || ft_strstr(s1, "FILE"))
 		&& ft_strisalnum(s2) == 0)
@@ -56,12 +56,11 @@ static int	check_cmd(char *s1, char *s2)
 	return (SUCCESS);
 }
 
-static char	*get_tab_out(char *cmd)
+static char		*get_tab_out(char *cmd)
 {
 	int		i;
 
 	i = 0;
-	cmd = ft_strtrim(cmd);
 	while (cmd[i])
 	{
 		if (cmd[i] == '\t')
@@ -71,7 +70,7 @@ static char	*get_tab_out(char *cmd)
 	return (cmd);
 }
 
-char		***lexer(char *cmd)
+char			***lexer(char *cmd)
 {
 	int			i;
 	char		***tokens;
@@ -79,10 +78,11 @@ char		***lexer(char *cmd)
 
 	i = 0;
 	tokens = (char ***)malloc(sizeof(char **) * 2);
+	cmd = ft_strtrim(cmd);
+	if (!cmd)
+		return (FAILLURE);
 	cmd = get_tab_out(cmd);
 	tokens[0] = ft_strsplit(cmd, ' ');
-	if (ft_strlen(tokens[0][0]) == 0)
-		return (FAILLURE);
 	tokens[1] = (char **)malloc(sizeof(char *) * (ft_arraylen(tokens[0]) + 1));
 	while (tokens[0][i])
 	{

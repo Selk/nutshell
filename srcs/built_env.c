@@ -13,7 +13,7 @@
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
-static void		free_tmp(char **tmp)
+static void		free_tools(char **tmp)
 {
 	int		i;
 
@@ -26,17 +26,16 @@ static void		free_tmp(char **tmp)
 	free(tmp);
 }
 
-static char		**b_check_setenv(t_env *env, t_tree *root)
+static char		**b_check_setenv(t_env *env, t_tree *root, int i)
 {
 	char	**tmp;
-	int		i;
 	int		flag;
 
-	i = 0;
 	tmp = (char **)malloc(sizeof(char *) * (ft_arraylen(env->env) + 1));
 	while (env->env[i])
 	{
-		if (ft_strstr(env->env[i], root->option[1]))
+		if (ft_strstr(env->env[i], root->option[1])
+			&& env->env[i][ft_strlen(root->option[1])] == '=')
 		{
 			ft_putstr_fd("This variable already exist: ", 2);
 			ft_putendl_fd(root->option[1], 2);
@@ -48,9 +47,10 @@ static char		**b_check_setenv(t_env *env, t_tree *root)
 	tmp[i] = '\0';
 	if (flag == 1)
 	{
-		free_tmp(tmp);
+		free_tools(tmp);
 		return (0);
 	}
+	free_tools(env->env);
 	return (tmp);
 }
 
@@ -73,7 +73,7 @@ int				b_setenv(t_tree *root, t_env *env)
 	i = 0;
 	if (!root->option[1] || !root->option[2])
 		return (1);
-	if (!(tmp = b_check_setenv(env, root)))
+	if (!(tmp = b_check_setenv(env, root, i)))
 		return (1);
 	env->env = (char **)malloc(sizeof(char *) * (ft_arraylen(tmp) + 2));
 	i = 0;
@@ -108,10 +108,10 @@ int				b_unsetenv(t_tree *root, t_env *env)
 		{
 			while (env->env[i])
 			{
-				tmp = ft_strdup(env->env[i]);
-				env->env[i] = env->env[i + 1];
-				env->env[i + 1] = tmp;
-				i++;
+				tmp = ft_strdup(env->env[i++]);
+				env->env[i - 1] = env->env[i];
+				env->env[i] = tmp;
+				free(tmp);
 				if (env->env[i - 1] == '\0')
 					break ;
 			}

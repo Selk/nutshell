@@ -18,7 +18,7 @@
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
-static void		ft_get_path(t_env *val)
+static void		get_path(t_env *val)
 {
 	int		i;
 	int		j;
@@ -45,6 +45,21 @@ static void		ft_get_path(t_env *val)
 	str = NULL;
 }
 
+static char		**get_env(char **envp)
+{
+	char		**env;
+	int			i;
+
+	i = 0;
+	env = (char **)malloc(sizeof(char *) * ft_arraylen(envp));
+	while (envp[i])
+	{
+		env[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	return (env);
+}
+
 int				main(int argc, char *argv[], char *envp[])
 {
 	t_tree		*tree;
@@ -53,8 +68,9 @@ int				main(int argc, char *argv[], char *envp[])
 	int			ret;
 
 	env = (t_env *)malloc(sizeof(t_env));
-	env->env = envp;
-	ft_get_path(env);
+	env->env = get_env(envp);
+	//env->env = envp;
+	get_path(env);
 	while (argv || argc)
 	{
 		ft_bzero(buf, SIZE);
