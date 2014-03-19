@@ -74,7 +74,6 @@ static void		print_prompt(void)
 		if (pwd[i] == '/')
 			j = i;
 	}
-	j++;
 	while (pwd[j])
 	{
 		write(1, &pwd[j], 1);
