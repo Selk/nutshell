@@ -30,6 +30,7 @@ B		=	\033[1;34m
 SRC = \
 	builtins.c \
 	built_cd.c \
+	built_env.c \
 	check_built.c \
 	\
 	lexer.c \

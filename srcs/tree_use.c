@@ -94,6 +94,8 @@ void			add_elem_tree(char ***tokens, char *type, t_tree **tree)
 			tmp[0] = ft_strdup(tokens[0][i]);
 			tmp[1] = ft_strdup(tokens[1][i]);
 			tree_add(&*tree, tmp, i + 1);
+			free(tmp[0]);
+			free(tmp[1]);
 		}
 		i++;
 	}

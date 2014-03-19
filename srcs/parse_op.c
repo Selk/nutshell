@@ -16,7 +16,7 @@ static int	error(int index, int flag)
 {
 	int			i;
 	char		*tok[8] = {";", "|", "||", "&&", "<", ">", ">>", NULL};
-	char		*flags[] =
+	char		*flags[4] =
 	{
 		[0] = "Invalid null command.\n",
 		[1] = "Ambiguous output redirect.\n",

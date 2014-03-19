@@ -12,7 +12,6 @@
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
-
 static int		no_need_parse(char **tok, int i, int index)
 {
 	(void)tok;

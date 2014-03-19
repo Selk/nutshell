@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include <stdlib.h>
 #include "../includes/minishell.h"
+#include "../libs/printf/includes/libftprintf.h"
 
 void		free_tree(t_tree *root)
 {
@@ -21,8 +22,8 @@ void		free_tree(t_tree *root)
 	free(root->type);
 	while (root->option[i])
 		free(root->option[i++]);
-	if (root->cmd_final)
-		free(root->cmd_final);
+	free(root->cmd_final);
+	root->cmd_final = NULL;
 	free(root->option);
 	free(root);
 	if (root->left)

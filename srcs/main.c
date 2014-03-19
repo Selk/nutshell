@@ -59,7 +59,6 @@ int				main(int argc, char *argv[], char *envp[])
 	{
 		ft_bzero(buf, SIZE);
 		ft_printf("Nutshell $>");
-		env->last = FAILLURE;
 		if ((ret = read(0, buf, SIZE)) < 2)
 			continue ;
 		buf[ret - 1] = '\0';
