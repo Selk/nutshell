@@ -45,27 +45,6 @@ static void		ft_get_path(t_env *val)
 	str = NULL;
 }
 
-void			aff(t_tree *root, int prof)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (i++ < prof)
-		ft_printf(" -  ");
-	while (root->option[j] != '\0')
-		ft_printf("[%s] ", root->option[j++]);
-	ft_printf("- [%s] ", root->type);
-	if (root->prev)
-		ft_printf("|| prev = [%s]", root->prev->data);
-	ft_printf("\n");
-	if (root->left)
-		aff(root->left, prof + 1);
-	if (root->right)
-		aff(root->right, prof + 1);
-}
-
 int				main(int argc, char *argv[], char *envp[])
 {
 	t_tree		*tree;
@@ -89,6 +68,8 @@ int				main(int argc, char *argv[], char *envp[])
 			continue ;
 		ft_cmd_path(tree, env);
 		ft_process(tree, env);
+		free_tree(tree);
+		free(env->fst_cmd);
 	}
 	return (0);
 }

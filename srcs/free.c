@@ -12,16 +12,15 @@
 #include <stdlib.h>
 #include "../includes/minishell.h"
 
-void			free_tree(t_tree *root)
+void		free_tree(t_tree *root)
 {
 	int		i;
 
 	i = 0;
 	free(root->data);
 	free(root->type);
-	if (root->option)
-		while (root->option[i])
-			free(root->option[i++]);
+	while (root->option[i])
+		free(root->option[i++]);
 	if (root->cmd_final)
 		free(root->cmd_final);
 	free(root->option);
@@ -32,7 +31,7 @@ void			free_tree(t_tree *root)
 		free_tree(root->right);
 }
 
-void			free_path(char **path)
+void		free_path(char **path)
 {
 	int		i;
 
@@ -40,26 +39,11 @@ void			free_path(char **path)
 	while (path[i])
 	{
 		free(path[i]);
+		path[i] = NULL;
 		i++;
 	}
 	free(path);
-}
-
-void		free_env(char **tmp)
-{
-	int		i;
-
-	if (tmp)
-	{
-		i = 0;
-		while (tmp[i])
-		{
-			if (tmp[i])
-				free(tmp[i]);
-			i++;
-		}
-		free(tmp);
-	}
+	path = NULL;
 }
 
 void		free_tokens(char ***tokens)

@@ -20,7 +20,6 @@ static void		tree_add_bis(t_tree *tmp_tree, int key, t_tree *root)
 	while (tmp_tree)
 	{
 		tmp_node = tmp_tree;
-		root->prev = tmp_tree;
 		if (key > tmp_tree->key)
 		{
 			tmp_tree = tmp_tree->right;
@@ -49,7 +48,6 @@ static void		tree_add(t_tree **tree, char **cmd, int key)
 	root->type = ft_strdup(cmd[1]);
 	root->left = NULL;
 	root->right = NULL;
-	root->prev = root;
 	root->cmd_final = NULL;
 	if (tmp_tree)
 		tree_add_bis(tmp_tree, key, root);

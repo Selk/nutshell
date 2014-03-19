@@ -13,13 +13,12 @@
 NAME = nutsh
 
 SRC_DIR = srcs/
-CHK_DIR = libs/libchk
 FTPRINTF_DIR = libs/printf
 INC_DIR = includes/
 
 CC=gcc
 FLAGS=-Wall -Wextra -Werror -g -I $(INC_DIR)
-LIB=-L /usr/lib -ltermcap -L ./$(CHK_DIR) -lchk -L ./$(FTPRINTF_DIR) -lftprintf
+LIB=-L /usr/lib -ltermcap -L ./$(FTPRINTF_DIR) -lftprintf
 OBJ= $(SRC:.c=.o)
 
 D		=	\033[0m
@@ -47,7 +46,6 @@ SRC = \
 	\
 	get_next_line.c \
 	ft_strsplit.c \
-	ft_opesplit.c \
 	ft_strdup.c \
 	ft_bzero.c \
 	ft_strcpy.c \
@@ -70,8 +68,6 @@ SRC = \
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@Make -C $(CHK_DIR) fclean
-	@Make -C $(CHK_DIR)
 	@Make -C $(FTPRINTF_DIR) fclean
 	@Make -C $(FTPRINTF_DIR)
 	@echo "Création du binaire..."
@@ -93,12 +89,10 @@ $(NAME): $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
-	@Make -C $(CHK_DIR) clean
 	@Make -C $(FTPRINTF_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
-	@Make -C $(CHK_DIR) fclean
 	@Make -C $(FTPRINTF_DIR) fclean
 
 re: fclean all

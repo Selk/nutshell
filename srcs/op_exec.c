@@ -31,7 +31,6 @@ void	ft_semi(t_tree *root, t_env *env)
 
 void	ft_or(t_tree *root, t_env *env)
 {
-	//if (env->last == SUCCESS)
 	ft_process(root->left, env);
 	if (env->last == FAILLURE)
 		ft_process(root->right, env);
@@ -39,7 +38,6 @@ void	ft_or(t_tree *root, t_env *env)
 
 void	ft_and(t_tree *root, t_env *env)
 {
-	//if (env->last == SUCCESS)
 	ft_process(root->left, env);
 	if (env->last == SUCCESS)
 		ft_process(root->right, env);

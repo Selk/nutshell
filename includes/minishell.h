@@ -42,7 +42,6 @@ typedef struct			s_tree
 	char				*type;
 	char				**option;
 	char				*cmd_final;
-	struct s_tree		*prev;
 	struct s_tree		*left;
 	struct s_tree		*right;
 }						t_tree;
@@ -73,26 +72,6 @@ typedef enum			e_builts
 	e_no,
 }						t_builts;
 
-typedef struct			s_index
-{
-	int					i;
-	int					flag;
-}						t_index;
-
-typedef struct			s_dl_list
-{
-	char				*data;
-	int					i;
-	struct s_dl_list	*next;
-	struct s_dl_list	*prev;
-}						t_dl_list;
-
-typedef struct			s_hist
-{
-	t_dl_list			*lh;
-	t_dl_list			*ci;
-}						t_hist;
-
 typedef struct			s_env
 {
 	char				**tmp;
@@ -108,10 +87,7 @@ typedef struct			s_env
 int			get_next_line(int fd, char **line);
 void		add_elem_tree(char ***tokens, char *type, t_tree **tree);
 int			ft_cmd_path(t_tree *root, t_env *env);
-void		ft_runsource(t_tree *root, int fd[2]);
-void		ft_rundest(t_tree *root, int fd[2]);
 void		ft_process(t_tree *root, t_env *env);
-t_hist		init_shell(t_hist hist, int *i);
 char		init(char buf);
 t_tree		*init_tree(char *cmd);
 
@@ -142,8 +118,8 @@ int			parse_op_semi(char **tok, int i, int index);
 /*
 **	free
 */
-void			free_tree(t_tree *root);
-void			free_path(char **path);
+void		free_tree(t_tree *root);
+void		free_path(char **path);
 void		free_tokens(char ***tokens);
 
 /*
@@ -162,16 +138,13 @@ int			b_echo(t_tree *root, t_env *env);
 **	libft
 */
 char		**ft_strsplit(const char *s, char c);
-char		**ft_opesplit(const char *s, char **str);
 size_t		ft_strlen(const char *str);
 size_t		ft_arraylen(char **array);
-char		*ft_strchr(const char *src, int c);
 void		ft_putendl_fd(const char *s, int fd);
 void		ft_putstr_fd(const char *s, int fd);
 int			ft_strcmp(const char *s1, const char *s2);
 char		*ft_strdup(const char *src);
 char		*ft_strtrim(const char *s);
-void		**ft_trim(char ***s);
 void		ft_bzero(void *s, size_t n);
 char		*ft_strcat(char *s1, const char *s2);
 char		*ft_strcpy(char *s1, const char *s2);
@@ -181,15 +154,5 @@ int			ft_isalnum(int c);
 int			ft_strisalnum(char *s);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strnew(size_t size);
-
-/*
-**	libchk
-*/
-void		x_read(int fd, char *buf, int buff_size);
-int			x_open(char *path, int flag, mode_t mode);
-void		*x_malloc(size_t size);
-void		x_close(int fd);
-int			x_dup2(int oldfd, int newfd);
-void		x_tputs(const char *str, int affcnt, int (*putc)(int));
 
 #endif /* !MINISHELL_H */

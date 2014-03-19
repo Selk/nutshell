@@ -9,6 +9,7 @@
 /*   Updated: 2013/11/19 13:13:31 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include "../includes/minishell.h"
 
 char		*ft_strdup(const char *src)
@@ -17,7 +18,9 @@ char		*ft_strdup(const char *src)
 	int		i;
 
 	i = 0;
-	dest = (char *)x_malloc(sizeof(char) * ft_strlen(src) + 1);
+	dest = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
+	if (!dest)
+		return (0);
 	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
