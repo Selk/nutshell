@@ -14,6 +14,31 @@
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
+static char		*get_tmp(char *str)
+{
+	int		i;
+	int		j;
+	int		len;
+	char	*tmp;
+
+	i = j = 0;
+	while (str[i])
+	{
+		if (str[i++] == '=')
+			break ;
+	}
+	len = ft_strlen(str) - i;
+	tmp = (char *)malloc(sizeof(char) * (len + 1));
+	while (str[i])
+	{
+		tmp[j] = str[i];
+		i++;
+		j++;
+	}
+	tmp[j] = '\0';
+	return (tmp);
+}
+
 static void		put_oldpwd(char *pwd, t_env *env)
 {
 	int		i;
@@ -23,6 +48,7 @@ static void		put_oldpwd(char *pwd, t_env *env)
 	{
 		if (ft_strstr(env->env[i], "OLDPWD") && env->env[i][6] == '=')
 		{
+			free(env->env[i]);
 			env->env[i] = (char *)malloc(sizeof(char) * (ft_strlen(pwd) + 8));
 			ft_strcpy(env->env[i], "OLDPWD=");
 			ft_strcat(env->env[i], pwd);
@@ -42,8 +68,8 @@ static char		*put_pwd(char *pwd, t_env *env)
 	{
 		if (ft_strstr(env->env[i], "PWD") && env->env[i][3] == '=')
 		{
-			tmp = ft_strdup(ft_strsub(ft_strstr(env->env[i], "PWD="), 4
-							, ft_strlen(ft_strstr(env->env[i], "PWD="))));
+			tmp = get_tmp(ft_strstr(env->env[i], "PWD="));
+			free(env->env[i]);
 			env->env[i] = (char *)malloc(sizeof(char) * (ft_strlen(pwd) + 5));
 			ft_strcpy(env->env[i], "PWD=");
 			ft_strcat(env->env[i], pwd);
@@ -53,7 +79,7 @@ static char		*put_pwd(char *pwd, t_env *env)
 	return (tmp);
 }
 
-static void		home_cd(t_env *env)
+static void		cd(t_env *env, char *type)
 {
 	int		i;
 	char	*tmp;
@@ -61,31 +87,14 @@ static void		home_cd(t_env *env)
 	i = 0;
 	while (env->env[i])
 	{
-		if (ft_strstr(env->env[i], "HOME=") && env->env[i][4] == '=')
+		if (ft_strstr(env->env[i], type) && env->env[i][6] == '=')
 		{
-			tmp = ft_strdup(ft_strsub(ft_strstr(env->env[i], "HOME="), 5
-						, ft_strlen(ft_strstr(env->env[i], "HOME="))));
+			tmp = get_tmp(ft_strstr(env->env[i], type));
+			if (ft_strcmp(type, "OLDPWD=") == 0)
+				ft_printf("%s\n", tmp);
 			chdir(tmp);
 			put_oldpwd(put_pwd(tmp, env), env);
-		}
-		i++;
-	}
-}
-
-static void		back_cd(t_env *env)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (env->env[i])
-	{
-		if (ft_strstr(env->env[i], "OLDPWD=") && env->env[i][6] == '=')
-		{
-			tmp = ft_strdup(ft_strsub(ft_strstr(env->env[i], "OLDPWD="), 7
-						, ft_strlen(ft_strstr(env->env[i], "OLDPWD="))));
-			chdir(tmp);
-			put_oldpwd(put_pwd(tmp, env), env);
+			free(tmp);
 		}
 		i++;
 	}
@@ -97,9 +106,9 @@ int				b_cd(t_tree *root, t_env *env)
 	char			*pwd;
 
 	if (!root->option[1])
-		home_cd(env);
+		cd(env, "HOME=");
 	else if (ft_strcmp(root->option[1], "-") == 0)
-		back_cd(env);
+		cd(env, "OLDPWD=");
 	else if (stat(root->option[1], &pathstat) < 0)
 		ft_printf("cd : no such file or directory: %s\n", root->option[1]);
 	else if (!(S_ISDIR(pathstat.st_mode)))
@@ -112,6 +121,7 @@ int				b_cd(t_tree *root, t_env *env)
 		pwd = NULL;
 		pwd = getcwd(pwd, SIZE);
 		put_oldpwd(put_pwd(pwd, env), env);
+		free(pwd);
 	}
 	return (1);
 }

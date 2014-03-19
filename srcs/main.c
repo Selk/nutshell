@@ -69,7 +69,6 @@ int				main(int argc, char *argv[], char *envp[])
 
 	env = (t_env *)malloc(sizeof(t_env));
 	env->env = get_env(envp);
-	//env->env = envp;
 	get_path(env);
 	while (argv || argc)
 	{
