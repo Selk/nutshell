@@ -49,6 +49,14 @@ static int		ft_error_test(t_tree *root, t_env *env)
 	return (0);
 }
 
+static void		get_cmd(t_tree *root, t_env *env, int i)
+{
+	if (access(env->tmp[i], X_OK) == 0)
+		root->cmd_final = ft_strdup(env->tmp[i]);
+	if (access(root->option[0], X_OK) == 0)
+		root->cmd_final = ft_strdup(root->option[0]);
+}
+
 void			ft_process(t_tree *root, t_env *env)
 {
 	int		i;
@@ -74,14 +82,6 @@ void			ft_process(t_tree *root, t_env *env)
 		i++;
 	}
 	funct_array[i](root, env);
-}
-
-char			*get_cmd(t_tree *root, t_env *env, int i)
-{
-	if (access(env->tmp[i], X_OK) == 0)
-		root->cmd_final = ft_strdup(env->tmp[i]);
-	if (access(root->option[0], X_OK) == 0)
-		root->cmd_final = ft_strdup(root->option[0]);
 }
 
 int				ft_cmd_path(t_tree *root, t_env *env)

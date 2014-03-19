@@ -75,7 +75,7 @@ $(NAME): $(OBJ)
 	@Make -C $(FTPRINTF_DIR) fclean
 	@Make -C $(FTPRINTF_DIR)
 	@echo "Création du binaire..."
-	@$(CC) -g -o $@ $^ $(LIB)
+	@$(CC) -g $(FLAGS) -o $@ $^ $(LIB)
 	@echo "$(D)authors : cdauphin, gsaunier, jhyun, msevery, sdomingu"
 	@echo ""
 	@echo "Welcome to..."
@@ -87,7 +87,7 @@ $(NAME): $(OBJ)
 	@echo "$(B)|_|  \__$(R)|_______$(Y)|_$(B)|___/ $(G)|_| |_|   $(R)|_| "
 	@echo "$(D)"
 %.o: $(SRC_DIR)%.c
-	@$(CC) -g -c $^
+	@$(CC) -g $(FLAGS) -c $^
 
 .PHONY: clean fclean all
 

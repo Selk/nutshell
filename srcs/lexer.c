@@ -96,6 +96,5 @@ char		***lexer(char *cmd)
 		i++;
 	}
 	tokens[1][i] = 0;
-	tokens[2] = 0;
 	return (tokens);
 }

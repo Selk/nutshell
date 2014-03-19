@@ -9,6 +9,7 @@
 /*   Updated: 2014/03/14 13:52:36 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include "../includes/minishell.h"
 
 void			free_tree(t_tree *root)
@@ -67,7 +68,7 @@ void		free_tokens(char ***tokens)
 	int		j;
 
 	i = 0;
-	while (tokens[i])
+	while (i < 2)
 	{
 		j = 0;
 		while (tokens[i][j])
