@@ -19,21 +19,22 @@ void		ft_redl(t_tree *root, t_env *env)
 	int		file;
 	int		pid;
 
-	pid = fork();
+	pid = x_fork();
 	if (!pid)
 	{
 		if ((file = open(root->right->data, O_RDONLY)) == -1)
 		{
-			ft_printf("No such file or directory: %s\n", root->right->data);
-			return ;
+			ft_putstr_fd("No such file or directory: ", 2);
+			ft_putendl_fd(root->right->data, 2);
+			exit(0);
 		}
-		dup2(file, 0);
-		close(file);
+		x_dup2(file, 0);
+		x_close(file);
 		ft_process(root->left, env);
 		exit(0);
 	}
 	else
-		wait(0);
+		x_wait(0);
 }
 
 void		ft_redr(t_tree *root, t_env *env)
@@ -41,7 +42,7 @@ void		ft_redr(t_tree *root, t_env *env)
 	int		file;
 	int		pid;
 
-	pid = fork();
+	pid = x_fork();
 	if (!pid)
 	{
 		if (ft_strstr(root->type, "DREDR"))
@@ -50,11 +51,17 @@ void		ft_redr(t_tree *root, t_env *env)
 		else
 			file = open(root->right->data, O_RDWR | O_CREAT
 							| O_TRUNC, S_IREAD | S_IWRITE);
-		dup2(file, 1);
-		close(file);
+		if (file < 0)
+		{
+			ft_putstr_fd("Error : bad selected file: ", 2);
+			ft_putendl_fd(root->right->data, 2);
+			exit(0);
+		}
+		x_dup2(file, 1);
+		x_close(file);
 		ft_process(root->left, env);
 		exit(0);
 	}
 	else
-		wait(0);
+		x_wait(0);
 }

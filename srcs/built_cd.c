@@ -28,7 +28,7 @@ static char		*get_tmp(char *str)
 			break ;
 	}
 	len = ft_strlen(str) - i;
-	tmp = (char *)malloc(sizeof(char) * (len + 1));
+	tmp = (char *)x_malloc(sizeof(char) * (len + 1));
 	while (str[i])
 	{
 		tmp[j] = str[i];
@@ -49,7 +49,7 @@ static void		put_oldpwd(char *pwd, t_env *env)
 		if (ft_strstr(env->env[i], "OLDPWD") && env->env[i][6] == '=')
 		{
 			free(env->env[i]);
-			env->env[i] = (char *)malloc(sizeof(char) * (ft_strlen(pwd) + 8));
+			env->env[i] = (char *)x_malloc(sizeof(char) * (ft_strlen(pwd) + 8));
 			ft_strcpy(env->env[i], "OLDPWD=");
 			ft_strcat(env->env[i], pwd);
 		}
@@ -70,7 +70,7 @@ static char		*put_pwd(char *pwd, t_env *env)
 		{
 			tmp = get_tmp(ft_strstr(env->env[i], "PWD="));
 			free(env->env[i]);
-			env->env[i] = (char *)malloc(sizeof(char) * (ft_strlen(pwd) + 5));
+			env->env[i] = (char *)x_malloc(sizeof(char) * (ft_strlen(pwd) + 5));
 			ft_strcpy(env->env[i], "PWD=");
 			ft_strcat(env->env[i], pwd);
 		}
@@ -79,7 +79,7 @@ static char		*put_pwd(char *pwd, t_env *env)
 	return (tmp);
 }
 
-static void		cd(t_env *env, char *type)
+static void		cd(t_env *env, char *type, int flag)
 {
 	int		i;
 	char	*tmp;
@@ -87,7 +87,7 @@ static void		cd(t_env *env, char *type)
 	i = 0;
 	while (env->env[i])
 	{
-		if (ft_strstr(env->env[i], type) && env->env[i][6] == '=')
+		if (ft_strstr(env->env[i], type) && env->env[i][flag] == '=')
 		{
 			tmp = get_tmp(ft_strstr(env->env[i], type));
 			if (ft_strcmp(type, "OLDPWD=") == 0)
@@ -106,9 +106,9 @@ int				b_cd(t_tree *root, t_env *env)
 	char			*pwd;
 
 	if (!root->option[1])
-		cd(env, "HOME=");
+		cd(env, "HOME=", 4);
 	else if (ft_strcmp(root->option[1], "-") == 0)
-		cd(env, "OLDPWD=");
+		cd(env, "OLDPWD=", 6);
 	else if (stat(root->option[1], &pathstat) < 0)
 		ft_printf("cd : no such file or directory: %s\n", root->option[1]);
 	else if (!(S_ISDIR(pathstat.st_mode)))

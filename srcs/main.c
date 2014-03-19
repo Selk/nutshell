@@ -34,7 +34,7 @@ static void		get_path(t_env *val)
 		else
 			j++;
 	}
-	str = (char *)malloc(sizeof(char) * ft_strlen(val->env[j]) - 4);
+	str = (char *)x_malloc(sizeof(char) * ft_strlen(val->env[j]) - 4);
 	while (val->env[j][i] != '\0')
 	{
 		str[i - 5] = val->env[j][i];
@@ -51,13 +51,35 @@ static char		**get_env(char **envp)
 	int			i;
 
 	i = 0;
-	env = (char **)malloc(sizeof(char *) * ft_arraylen(envp));
+	env = (char **)x_malloc(sizeof(char *) * ft_arraylen(envp));
 	while (envp[i])
 	{
 		env[i] = ft_strdup(envp[i]);
 		i++;
 	}
 	return (env);
+}
+
+static void		print_prompt(void)
+{
+	char		*pwd;
+	int			i;
+	int			j;
+
+	i = j = 0;
+	pwd = getcwd(pwd, SIZE);
+	while (pwd[i])
+	{
+		i++;
+		if (pwd[i] == '/')
+			j = i;
+	}
+	j++;
+	while (pwd[j])
+	{
+		write(1, &pwd[j], 1);
+		j++;
+	}
 }
 
 int				main(int argc, char *argv[], char *envp[])
@@ -67,13 +89,14 @@ int				main(int argc, char *argv[], char *envp[])
 	char		buf[SIZE];
 	int			ret;
 
-	env = (t_env *)malloc(sizeof(t_env));
+	env = (t_env *)x_malloc(sizeof(t_env));
 	env->env = get_env(envp);
 	get_path(env);
 	while (argv || argc)
 	{
 		ft_bzero(buf, SIZE);
-		ft_printf("Nutshell $>");
+		print_prompt();
+		ft_printf(" $>");
 		if ((ret = read(0, buf, SIZE)) < 2)
 			continue ;
 		buf[ret - 1] = '\0';

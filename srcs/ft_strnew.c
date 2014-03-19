@@ -9,7 +9,7 @@
 /*   Updated: 2013/11/20 17:43:48 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "../includes/minishell.h"
 
 char		*ft_strnew(size_t size)
 {
@@ -17,7 +17,7 @@ char		*ft_strnew(size_t size)
 	size_t	i;
 
 	i = 0;
-	str = (char *) malloc(sizeof(char) * (size + 1));
+	str = (char *)x_malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (NULL);
 	while (i < size)

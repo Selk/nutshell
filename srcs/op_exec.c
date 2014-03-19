@@ -16,7 +16,7 @@ void	ft_semi(t_tree *root, t_env *env)
 {
 	int		pid;
 
-	pid = fork();
+	pid = x_fork();
 	if (!pid)
 	{
 		ft_process(root->left, env);
@@ -24,7 +24,7 @@ void	ft_semi(t_tree *root, t_env *env)
 	}
 	else
 	{
-		wait(0);
+		x_wait(0);
 		ft_process(root->right, env);
 	}
 }
@@ -50,23 +50,23 @@ void	ft_pipe(t_tree *root, t_env *env)
 	int		stdcpy;
 
 	pipe(fd);
-	pid = fork();
-	stdcpy = dup(0);
+	pid = x_fork();
+	stdcpy = x_dup(0);
 	if (!pid)
 	{
-		close(fd[0]);
-		dup2(fd[1], 1);
-		close(fd[1]);
+		x_close(fd[0]);
+		x_dup2(fd[1], 1);
+		x_close(fd[1]);
 		ft_process(root->left, env);
 		exit(0);
 	}
 	else
 	{
-		wait(0);
-		close(fd[1]);
-		dup2(fd[0], 0);
-		close(fd[0]);
+		x_wait(0);
+		x_close(fd[1]);
+		x_dup2(fd[0], 0);
+		x_close(fd[0]);
 		ft_process(root->right, env);
-		dup2(stdcpy, 0);
+		x_dup2(stdcpy, 0);
 	}
 }

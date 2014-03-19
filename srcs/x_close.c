@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   x_close.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 15:28:34 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/22 15:28:34 by cdauphin         ###   ########.fr       */
+/*   Created: 2014/03/19 16:07:43 by cdauphin          #+#    #+#             */
+/*   Updated: 2014/03/19 16:07:43 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-char		*ft_strsub(const char *s, unsigned int start, size_t len)
+void	x_close(int fd)
 {
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	str = (char *) malloc(sizeof(char) * len + 1);
-	if (!str)
-		return (NULL);
-	while (s[i] != '\0')
+	if (close(fd) == -1)
 	{
-		if (i >= (int) start && j < (int) len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
+		write(2, "Close : fail\n", 13);
+		exit(EXIT_FAILURE);
 	}
-	while (i >= (int) len)
-	{
-		str[i] = '\0';
-		i--;
-	}
-	return (str);
 }

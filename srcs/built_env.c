@@ -31,7 +31,7 @@ static char		**b_check_setenv(t_env *env, t_tree *root, int i)
 	char	**tmp;
 	int		flag;
 
-	tmp = (char **)malloc(sizeof(char *) * (ft_arraylen(env->env) + 1));
+	tmp = (char **)x_malloc(sizeof(char *) * (ft_arraylen(env->env) + 1));
 	while (env->env[i])
 	{
 		if (ft_strstr(env->env[i], root->option[1])
@@ -75,7 +75,7 @@ int				b_setenv(t_tree *root, t_env *env)
 		return (1);
 	if (!(tmp = b_check_setenv(env, root, i)))
 		return (1);
-	env->env = (char **)malloc(sizeof(char *) * (ft_arraylen(tmp) + 2));
+	env->env = (char **)x_malloc(sizeof(char *) * (ft_arraylen(tmp) + 2));
 	i = 0;
 	while (tmp[i])
 	{
@@ -84,7 +84,7 @@ int				b_setenv(t_tree *root, t_env *env)
 		i++;
 	}
 	free(tmp);
-	env->env[i] = (char *)malloc(sizeof(char) * (ft_strlen(root->option[1])
+	env->env[i] = (char *)x_malloc(sizeof(char) * (ft_strlen(root->option[1])
 								+ ft_strlen(root->option[2]) + 2));
 	ft_strcpy(env->env[i], root->option[1]);
 	ft_strcat(env->env[i], "=");

@@ -41,7 +41,7 @@ static void		tree_add(t_tree **tree, char **cmd, int key)
 	t_tree	*root;
 
 	tmp_tree = *tree;
-	root = (t_tree *)malloc(sizeof(t_tree));
+	root = (t_tree *)x_malloc(sizeof(t_tree));
 	root->key = key;
 	root->data = ft_strdup(cmd[0]);
 	root->option = ft_strsplit(cmd[0], ' ');

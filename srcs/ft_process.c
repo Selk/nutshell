@@ -21,7 +21,7 @@ static void		ft_exec(t_tree *root, t_env *env)
 
 	if (builtins(root, env) == 1)
 		return ;
-	pid = fork();
+	pid = x_fork();
 	if (!pid)
 	{
 		execve(root->cmd_final, root->option, NULL);
@@ -93,7 +93,7 @@ int				ft_cmd_path(t_tree *root, t_env *env)
 		return (0);
 	if (ft_strcmp(root->type, "CMD") == 0)
 	{
-		env->tmp = (char **)malloc(sizeof(char *) * ft_arraylen(env->path));
+		env->tmp = (char **)x_malloc(sizeof(char *) * ft_arraylen(env->path));
 		while (env->path[i] != '\0')
 		{
 			env->tmp[i] = ft_strdup(env->path[i]);

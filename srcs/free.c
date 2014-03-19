@@ -32,19 +32,26 @@ void		free_tree(t_tree *root)
 		free_tree(root->right);
 }
 
-void		free_path(char **path)
+void		free_env(t_env *env)
 {
 	int		i;
 
 	i = 0;
-	while (path[i])
+	while (env->path[i])
 	{
-		free(path[i]);
-		path[i] = NULL;
+		free(env->path[i]);
 		i++;
 	}
-	free(path);
-	path = NULL;
+	free(env->path);
+	i = 0;
+	while (env->env[i])
+	{
+		free(env->env[i]);
+		i++;
+	}
+	free(env->env);
+	free(env->fst_cmd);
+	free(env);
 }
 
 void		free_tokens(char ***tokens)

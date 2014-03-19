@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   x_wait.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 12:12:26 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 12:12:26 by cdauphin         ###   ########.fr       */
+/*   Created: 2014/03/19 16:34:15 by cdauphin          #+#    #+#             */
+/*   Updated: 2014/03/19 16:34:15 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include <unistd.h>
 
-void		ft_bzero(void *s, size_t n)
+pid_t	x_wait(int *status)
 {
-	unsigned char	*tmp_dest;
-	size_t			i;
+	pid_t	pid;
 
-	i = 0;
-	tmp_dest = (unsigned char *)s;
-	while (i < n)
+	pid = wait(status);
+	if (pid < 0)
 	{
-		tmp_dest[i] = '\0';
-		i++;
+		write(2, "Wait : fail\n", 12);
+		exit(EXIT_FAILURE);
 	}
+	return (pid);
 }

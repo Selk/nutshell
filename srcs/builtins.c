@@ -16,7 +16,7 @@
 int		b_exit(t_tree *root, t_env *env)
 {
 	free_tree(root);
-	free_path(env->path);
+	free_env(env);
 	exit(0);
 	return (1);
 }

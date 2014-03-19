@@ -73,28 +73,28 @@ static char		*get_tab_out(char *cmd)
 char			***lexer(char *cmd)
 {
 	int			i;
-	char		***tokens;
+	char		***token;
 	char		*tok[8] = {";", "|", "||", "&&", "<", ">", ">>", NULL};
 
 	i = 0;
-	tokens = (char ***)malloc(sizeof(char **) * 2);
+	token = (char ***)x_malloc(sizeof(char **) * 2);
 	cmd = ft_strtrim(cmd);
 	if (!cmd)
 		return (FAILLURE);
 	cmd = get_tab_out(cmd);
-	tokens[0] = ft_strsplit(cmd, ' ');
-	tokens[1] = (char **)malloc(sizeof(char *) * (ft_arraylen(tokens[0]) + 1));
-	while (tokens[0][i])
+	token[0] = ft_strsplit(cmd, ' ');
+	token[1] = (char **)x_malloc(sizeof(char *) * (ft_arraylen(token[0]) + 1));
+	while (token[0][i])
 	{
 		if (i == 0)
-			tokens[1][i] = ft_strdup(get_token(tokens[0][i], tok, e_cmd));
+			token[1][i] = ft_strdup(get_token(token[0][i], tok, e_cmd));
 		else
-			tokens[1][i] = ft_strdup(get_token(tokens[0][i]
-								, tok, get_flag(tokens[1][i - 1])));
-		if (check_cmd(tokens[1][i], tokens[0][i]) == FAILLURE)
+			token[1][i] = ft_strdup(get_token(token[0][i]
+								, tok, get_flag(token[1][i - 1])));
+		if (check_cmd(token[1][i], token[0][i]) == FAILLURE)
 			return (FAILLURE);
 		i++;
 	}
-	tokens[1][i] = 0;
-	return (tokens);
+	token[1][i] = 0;
+	return (token);
 }

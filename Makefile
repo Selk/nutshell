@@ -45,13 +45,11 @@ SRC = \
 	op_red.c \
 	free.c \
 	\
-	get_next_line.c \
 	ft_strsplit.c \
 	ft_strdup.c \
 	ft_bzero.c \
 	ft_strcpy.c \
 	ft_strcmp.c \
-	ft_strsub.c \
 	ft_strtrim.c \
 	ft_strlen.c \
 	ft_arraylen.c \
@@ -63,7 +61,13 @@ SRC = \
 	ft_putendl_fd.c \
 	ft_putstr_fd.c \
 	ft_isalnum.c \
-	ft_strisalnum.c
+	ft_strisalnum.c \
+	\
+	x_malloc.c \
+	x_dup.c \
+	x_fork.c \
+	x_wait.c \
+	x_close.c
 
 
 all: $(NAME)

@@ -84,7 +84,6 @@ typedef struct			s_env
 /*
 **	process
 */
-int			get_next_line(int fd, char **line);
 void		add_elem_tree(char ***tokens, char *type, t_tree **tree);
 int			ft_cmd_path(t_tree *root, t_env *env);
 void		ft_process(t_tree *root, t_env *env);
@@ -119,7 +118,7 @@ int			parse_op_semi(char **tok, int i, int index);
 **	free
 */
 void		free_tree(t_tree *root);
-void		free_path(char **path);
+void		free_env(t_env *env);
 void		free_tokens(char ***tokens);
 
 /*
@@ -149,10 +148,19 @@ void		ft_bzero(void *s, size_t n);
 char		*ft_strcat(char *s1, const char *s2);
 char		*ft_strcpy(char *s1, const char *s2);
 char		*ft_strstr(const char *s1, const char *s2);
-char		*ft_strsub(const char *s, unsigned int start, size_t len);
 int			ft_isalnum(int c);
 int			ft_strisalnum(char *s);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strnew(size_t size);
+
+/*
+**	X
+*/
+void		*x_malloc(size_t size);
+void		x_close(int fd);
+int			x_dup(int newfd);
+int			x_dup2(int oldfd, int newfd);
+pid_t		x_wait(int *status);
+pid_t		x_fork(void);
 
 #endif /* !MINISHELL_H */

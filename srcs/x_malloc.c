@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   x_malloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 12:12:26 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 12:12:26 by cdauphin         ###   ########.fr       */
+/*   Created: 2014/03/19 15:59:53 by cdauphin          #+#    #+#             */
+/*   Updated: 2014/03/19 15:59:53 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
+#include <stdlib.h>
 
-void		ft_bzero(void *s, size_t n)
+void	*x_malloc(size_t size)
 {
-	unsigned char	*tmp_dest;
-	size_t			i;
+	void	*ptr;
 
-	i = 0;
-	tmp_dest = (unsigned char *)s;
-	while (i < n)
+	ptr = malloc(size);
+	if (ptr)
+		return (ptr);
+	else
 	{
-		tmp_dest[i] = '\0';
-		i++;
+		write(2, "Malloc : fail\n", 14);
+		exit(EXIT_FAILURE);
 	}
 }

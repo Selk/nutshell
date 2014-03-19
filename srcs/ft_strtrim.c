@@ -9,8 +9,7 @@
 /*   Updated: 2013/11/22 16:55:52 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include "../libs/printf/includes/libftprintf.h"
+#include "../includes/minishell.h"=
 
 size_t		ft_strlen(const char *str);
 
@@ -55,8 +54,8 @@ char		*ft_strtrim(const char *s)
 	if (s == NULL || ft_strlen(s) == 0)
 		return (NULL);
 	if (ft_strlen(s) == 1 && !(s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-		return ((char *) s);
-	str = (char *)malloc(sizeof(char) * ft_strlen((char *)s) + 1);
+		return ((char *)s);
+	str = (char *)x_malloc(sizeof(char) * ft_strlen((char *)s) + 1);
 	if (!str)
 		return (NULL);
 	i = ft_comp_i(s);

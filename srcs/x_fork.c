@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   x_fork.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 12:12:26 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 12:12:26 by cdauphin         ###   ########.fr       */
+/*   Created: 2014/03/19 16:13:48 by cdauphin          #+#    #+#             */
+/*   Updated: 2014/03/19 16:13:48 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
+#include <stdlib.h>
 
-void		ft_bzero(void *s, size_t n)
+pid_t	x_fork(void)
 {
-	unsigned char	*tmp_dest;
-	size_t			i;
+	pid_t	pid;
 
-	i = 0;
-	tmp_dest = (unsigned char *)s;
-	while (i < n)
+	pid = fork();
+	if (pid < 0)
 	{
-		tmp_dest[i] = '\0';
-		i++;
+		write(2, "Fork : fail\n", 12);
+		exit(EXIT_FAILURE);
 	}
+	return (pid);
 }

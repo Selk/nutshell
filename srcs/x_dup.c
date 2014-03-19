@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   x_dup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 12:12:26 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 12:12:26 by cdauphin         ###   ########.fr       */
+/*   Created: 2014/03/19 16:10:01 by cdauphin          #+#    #+#             */
+/*   Updated: 2014/03/19 16:10:01 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 #include <unistd.h>
 
-void		ft_bzero(void *s, size_t n)
+int		x_dup2(int oldfd, int newfd)
 {
-	unsigned char	*tmp_dest;
-	size_t			i;
+	int		fd;
 
-	i = 0;
-	tmp_dest = (unsigned char *)s;
-	while (i < n)
+	if ((fd = dup2(oldfd, newfd)) < 0)
 	{
-		tmp_dest[i] = '\0';
-		i++;
+		write(2, "Dup2 : fail\n", 12);
+		exit(EXIT_FAILURE);
 	}
+	return (fd);
+}
+
+int		x_dup(int newfd)
+{
+	int		fd;
+
+	if ((fd = dup(newfd)) < 0)
+	{
+		write(2, "Dup : fail\n", 11);
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
 }
