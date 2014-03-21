@@ -6,7 +6,7 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 13:33:57 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/03/21 10:10:36 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:26:09 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void		print_prompt(void)
 		write(1, &pwd[j], 1);
 		j++;
 	}
+	free(pwd);
 }
 
 int				main(int argc, char *argv[], char *envp[])
