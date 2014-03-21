@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/14 13:05:26 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/02/14 13:05:26 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:17 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 size_t	ft_arraylen(char **array)

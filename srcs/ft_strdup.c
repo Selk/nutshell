@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 12:08:33 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/19 13:13:31 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:50 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char		*ft_strdup(const char *src)

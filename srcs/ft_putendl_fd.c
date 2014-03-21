@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 11:23:15 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 11:23:15 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:06:18 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 void		ft_putchar_fd(char c, int fd);
 
 void		ft_putendl_fd(const char *s, int fd)

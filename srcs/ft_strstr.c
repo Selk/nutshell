@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 10:44:54 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 10:44:54 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:08:08 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 char		*ft_strstr(const char *s1, const char *s2)

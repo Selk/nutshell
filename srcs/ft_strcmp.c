@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 16:56:21 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/19 16:56:21 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:45 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 int			ft_strcmp(const char *s1, const char *s2)

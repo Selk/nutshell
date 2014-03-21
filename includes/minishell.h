@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/23 12:42:51 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/12/23 12:42:51 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:09:35 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # define SIZE 256

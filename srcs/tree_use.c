@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/22 09:58:10 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/01/22 09:58:10 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:08:35 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <stdlib.h>
 #include "../includes/minishell.h"
 #include "../libs/printf/includes/libftprintf.h"

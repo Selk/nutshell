@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 13:24:39 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/19 13:24:39 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:47 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 char		*ft_strcpy(char *s1, const char *s2)
 {
 	int		i;

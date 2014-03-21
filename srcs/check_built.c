@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/11 14:21:22 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/03/11 14:21:22 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:10 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 static int	check_built(char *s, char *builts[7])

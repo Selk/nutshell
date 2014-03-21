@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/25 13:42:32 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/25 13:42:32 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:08:05 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 size_t		ft_strlen(const char *str);

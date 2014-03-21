@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 17:43:48 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/20 17:43:48 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:08:01 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 char		*ft_strnew(size_t size)

@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/26 14:06:43 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/02/26 14:06:43 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:54 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 int		ft_isalnum(int c);
 
 int		ft_strisalnum(char *s)

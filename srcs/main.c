@@ -6,15 +6,15 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/27 13:33:57 by cdauphin          #+#    #+#             */
-/*   Updated: 2014/01/27 13:33:57 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:10:36 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <term.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <strings.h>
-#include "../includes/termcaps.h"
 #include "../libs/printf/includes/libftprintf.h"
 #include "../includes/minishell.h"
 
@@ -67,6 +67,7 @@ static void		print_prompt(void)
 	int			j;
 
 	i = j = 0;
+	pwd = NULL;
 	pwd = getcwd(pwd, SIZE);
 	while (pwd[i])
 	{

@@ -6,9 +6,10 @@
 /*   By: cdauphin <cdauphin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 14:28:20 by cdauphin          #+#    #+#             */
-/*   Updated: 2013/11/19 14:28:20 by cdauphin         ###   ########.fr       */
+/*   Updated: 2014/03/21 10:07:42 by cdauphin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 
 size_t		ft_strlen(const char *str);
